@@ -39,6 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/rajdhani": "^5.0.8"
+		"@fontsource/rajdhani": "^5.0.8",
+		"@vercel/speed-insights": "^1.0.10"
 	}
 }
