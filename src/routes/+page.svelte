@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { GradientButton } from 'flowbite-svelte';
     import Word from "../components/Word.svelte"
     import Keyboard from "../components/Keyboard.svelte"
     import { correctWords } from "$lib/correctWord"
@@ -188,7 +189,7 @@
         {#if state === 'playing'}
             <Keyboard />
         {:else}
-            <button on:click={() => resetGame()}>Nueva Partida</button>
+            <GradientButton color="pinkToOrange" class="my-3 text-3xl font-bold" on:click={() => resetGame()}>Nueva Partida</GradientButton>
         {/if}
     </div>
 </div>
