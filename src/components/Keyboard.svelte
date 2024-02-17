@@ -53,7 +53,7 @@
     {#each alphabet as line}
         <div class="flex justify-center">
             {#each line as letter}
-                <button class="text-white text-3xl font-bold {validateBg(letter)} border-2 border-white rounded-md m-1 p-1" on:click={handleButton(letter)}>{letter}</button>
+                <button class="text-white text-2xl font-bold {validateBg(letter)} border-2 border-white rounded-md m-1 p-1" on:click={handleButton(letter)}>{letter}</button>
             {/each}
         </div>
     {/each}
