@@ -189,7 +189,7 @@
         {#if state === 'playing'}
             <Keyboard />
         {:else}
-            <GradientButton color="pinkToOrange" class="my-3 text-3xl font-bold" on:click={() => resetGame()}>Nueva Partida</GradientButton>
+            <GradientButton color="pinkToOrange" class="mt-4 text-3xl font-bold" on:click={() => resetGame()}>Nueva Partida</GradientButton>
         {/if}
     </div>
 </div>
