@@ -6,7 +6,7 @@
     import { correctLetters, includedLetters, notIncludedLetters } from "$lib/alphabet"
 	import { onMount, setContext } from "svelte"
 
-    type State = 'start' | 'playing' | 'won' | 'lost'
+    type State = 'playing' | 'won' | 'lost'
 
     type CheckResult = {
         correctLetter: string[];
@@ -14,12 +14,31 @@
         notIncludedLetter: string[];
     }
 
-    let state: State = 'start'
+    let state: State = 'playing'
     let currentGuess: string[] = []
     let currentGuessIndex: number = 0
     let userGuesses: string[][] = []
     let lastWord: string = ''
     const voidWord: string[] = ["", "", "", "", ""]
+
+    function resetGame(): undefined {
+        //reset variables & state
+        state = 'playing'
+        currentGuess = []
+        currentGuessIndex = 0
+        userGuesses = []
+        lastWord = ''
+
+        //reset stores
+        correctLetters.set([])
+        includedLetters.set([])
+        notIncludedLetters.set([])
+        userGuessWord.set([])
+
+        //New correct word
+        updateCorrectWord()
+
+    }
 
     function checkWord(): CheckResult {
         const correctLetter = new Set<string>()
@@ -138,13 +157,8 @@
 
 <svelte:window on:keydown={handleKeydown}/>
 
-{#if state === 'start'}
-    <h1 class="flex justify-center text-white font-bold text-6xl mt-36 mb-10">Wordle en Español</h1>
-    <button class="flex m-auto text-white font-bold text-3xl bg-blue-500 rounded-md hover:bg-blue-400 px-5 py-1" on:click={() => state = 'playing'}>Empezar 🎉</button>
-{:else}
-
 <div class="flex flex-col">
-    <h1 class="text-white text-4xl font-bold my-10 m-auto"> Wordle en Español</h1>
+    <h1 class="text-white text-5xl font-bold my-3 m-auto"> Busca la Palabra</h1>
 
     <div class="m-auto">
         {#each Array(6) as _, i}
@@ -171,8 +185,10 @@
     </div>
 
     <div class="m-auto">
-        <Keyboard />
+        {#if state === 'playing'}
+            <Keyboard />
+        {:else}
+            <button on:click={() => resetGame()}>Nueva Partida</button>
+        {/if}
     </div>
 </div>
-
-{/if}
