@@ -1,10 +1,19 @@
 <script lang="ts">
-    import { GradientButton } from 'flowbite-svelte';
+    //flowbite
+    import { GradientButton } from 'flowbite-svelte'
+    import { Popover } from 'flowbite-svelte'
+    import { QuestionCircleSolid, ChevronRightOutline } from 'flowbite-svelte-icons'
+
+    //components
     import Word from "../components/Word.svelte"
     import Keyboard from "../components/Keyboard.svelte"
+
+    //stores & data
     import { correctWords } from "$lib/correctWord"
     import { correctWord, userGuessWord } from "$lib/correctWordStore"
     import { correctLetters, includedLetters, notIncludedLetters } from "$lib/alphabet"
+
+    //svelte
 	import { onMount, setContext } from "svelte"
 
     type State = 'playing' | 'won' | 'lost'
@@ -160,6 +169,28 @@
 
 <div class="flex flex-col">
     <h1 class="text-white text-5xl font-bold my-3 m-auto"> Busca la Palabra</h1>
+
+    <div class="flex items-center text-sm font-light text-gray-500 dark:text-gray-400 mb-2 m-auto">
+        <button id="b3">
+          <QuestionCircleSolid class="w-4 h-4 ms-1.5" />
+          <span class="sr-only">Show information</span>
+        </button>
+      </div>
+      <Popover triggeredBy="#b3" class="w-72 text-sm font-light text-gray-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400" placement="bottom">
+        <div class="p-3 space-y-2">
+            <h2 class="font-bold text-2xl text-gray-900">¿Cómo se juega?</h2>
+            <p class="text-xl font-bold">Tienes seis intentos para descubrir cuál es la palabra clave. Cuando tengas una palabra escrita, pulsa "ENTER" y descubrirás que:</p>
+
+            <h3 class="text-2xl rounded-md w-fit bg-green-500 text-white px-2">Letra verde</h3>
+            <p class="text-xl font-bold">Cuando la letra coincide en la misma posición que la palabra clave.</p>
+            
+            <h3 class="text-2xl rounded-md w-fit bg-orange-500 text-white px-2">Letra naranja</h3>
+            <p class="text-xl font-bold">Cuando la letra está en la palabra clave, pero no en esa posición.</p>
+
+            <h3 class="text-2xl rounded-md w-fit bg-gray-500 text-white px-2">Letra gris</h3>
+            <p class="text-xl font-bold">Esta letra, no está en la palabra clave.</p>
+        </div>
+      </Popover>
 
     <div class="m-auto">
         {#each Array(6) as _, i}
