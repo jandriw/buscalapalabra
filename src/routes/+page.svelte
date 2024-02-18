@@ -168,7 +168,7 @@
 <svelte:window on:keydown={handleKeydown}/>
 
 <div class="flex flex-col">
-    <h1 class="text-white text-5xl font-bold my-3 m-auto"> Busca la Palabra</h1>
+    <h1 class="text-white text-5xl font-bold mt-3 mb-1 m-auto"> Busca la Palabra</h1>
 
     <div class="flex items-center text-sm font-light text-gray-500 dark:text-gray-400 mb-2 m-auto">
         <button id="b3">
