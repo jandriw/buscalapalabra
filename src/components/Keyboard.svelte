@@ -29,7 +29,7 @@
                     console.log('backspacePressed context está devolviendo null')
                 }
             }
-        } else if ( letter === 'ENTER' && $userGuessWord.length < 4 ) {
+        } else if ( letter === 'ENT' && $userGuessWord.length < 4 ) {
             return (e) => {
                 if (enterPressed) {
                     enterPressed()
@@ -37,7 +37,7 @@
                     console.log('enterPressed context está devolviendo null')
                 }
             }
-        } else if (letter !== 'DEL' && letter !== 'ENTER') {
+        } else if (letter !== 'DEL' && letter !== 'ENT') {
             return () => {
                 userGuessWord.update((value) => [...value, letter])
                 updateUserGuessWord()
