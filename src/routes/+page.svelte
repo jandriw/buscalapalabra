@@ -131,7 +131,6 @@
     function updateCorrectWord() {
         let correctWordId : number = getRandomInt(correctWords.length)
         $correctWord = correctWords[correctWordId]
-        console.log($correctWord)
     }
 
     onMount( 
@@ -144,10 +143,6 @@
 
     function gameLost() {
         state = 'lost'
-    }
-
-    $: {
-        console.log($userGuessWord)
     }
 
     $: lastWord === $correctWord.toUpperCase() && gameWon()
